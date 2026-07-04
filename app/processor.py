@@ -18,5 +18,8 @@ class ImageProcessor:
         rotated.save(output_path)
 
     def compress_image(self, input_path, output_path, quality):
+        if quality < 1 or quality > 100:
+            raise ValueError("Quality must be between 1 and 100")
+
         image = Image.open(input_path)
         image.save(output_path, optimize=True, quality=quality)
